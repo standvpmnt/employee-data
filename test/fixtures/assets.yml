@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asset_detail: one
+  asset_identifier: MyString
+  employee: one
+  note: MyString
+  updated_by: MyString
+  in_store: false
+
+two:
+  asset_detail: two
+  asset_identifier: MyString
+  employee: two
+  note: MyString
+  updated_by: MyString
+  in_store: false

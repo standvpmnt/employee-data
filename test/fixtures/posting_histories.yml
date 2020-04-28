@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: one
+  employee: one
+  start_date: 2020-04-28
+  end_date: 2020-04-28
+
+two:
+  location: two
+  employee: two
+  start_date: 2020-04-28
+  end_date: 2020-04-28

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  effective_date: 2020-04-28
+  last_designation: MyString
+  last_salary: 1
+  new_designation: MyString
+  new_salary: 1
+  updated_by: MyString
+
+two:
+  employee: two
+  effective_date: 2020-04-28
+  last_designation: MyString
+  last_salary: 1
+  new_designation: MyString
+  new_salary: 1
+  updated_by: MyString

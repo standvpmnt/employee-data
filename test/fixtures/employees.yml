@@ -1,0 +1,49 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: one
+  employee_code: MyString
+  name: MyString
+  dob: 2020-04-28
+  gender: MyString
+  current_designation: MyString
+  date_of_joining: 2020-04-28
+  blood_group: MyString
+  personal_contact_no: MyString
+  father_name: MyString
+  mother_name: MyString
+  emergency_contact_no: MyString
+  emergency_contact_name: MyString
+  emergency_contact_relation: MyString
+  personal_email: MyString
+  official_email: MyString
+  local_address: MyText
+  permanent_address: MyString
+  isManager: false
+  manager: one
+  date_of_leaving: 2020-04-28
+  active: false
+
+two:
+  location: two
+  employee_code: MyString
+  name: MyString
+  dob: 2020-04-28
+  gender: MyString
+  current_designation: MyString
+  date_of_joining: 2020-04-28
+  blood_group: MyString
+  personal_contact_no: MyString
+  father_name: MyString
+  mother_name: MyString
+  emergency_contact_no: MyString
+  emergency_contact_name: MyString
+  emergency_contact_relation: MyString
+  personal_email: MyString
+  official_email: MyString
+  local_address: MyText
+  permanent_address: MyString
+  isManager: false
+  manager: two
+  date_of_leaving: 2020-04-28
+  active: false

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  start_date: 2020-04-28
+  end_date: 2020-04-28
+  working_days: 1
+  sick_leaves: 1
+  casual_leaves: 1
+  updated_by: MyString
+
+two:
+  employee: two
+  start_date: 2020-04-28
+  end_date: 2020-04-28
+  working_days: 1
+  sick_leaves: 1
+  casual_leaves: 1
+  updated_by: MyString
