@@ -1,4 +1,4 @@
 class AssetDetail < ApplicationRecord
   has_many :assets
-  validates :type, presence: true, uniqueness: true
+  validates :asset_category, presence: true, uniqueness: true
 end

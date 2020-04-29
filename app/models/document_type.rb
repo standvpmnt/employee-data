@@ -1,5 +1,5 @@
 class DocumentType < ApplicationRecord
   has_many :documents
-  validates :type, presence: true, uniqueness: true
+  validates :document_category, presence: true, uniqueness: true
   
 end
