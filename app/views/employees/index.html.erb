@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col m8">
+    <%= form_with(url: "/employees", method: "get") do %>
+      <div class="col m7">
+      <div class="input-field">
+        <%= text_field_tag :search, nil, placeholder:"Search by name or code" %>
+      </div>
+      </div>
+      <div class="col m4" style="padding-top:20px;">
+        <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+          Search <i class='material-icons right'>search</i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render partial: "table_employees"%>

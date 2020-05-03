@@ -1,0 +1,45 @@
+<%= form_with model: [@employee, @attendance_history] do |form| %>
+  <div class="input-field">
+    <div class="row">
+      <div class="col m-6">
+        <%= form.label :start_date, "Start Date"%>
+        <%= form.date_field :start_date, value: Date.today.last_month.beginning_of_month %>
+      </div>
+      <div class="col m-6">
+        <%= form.label :end_date, "End Date"%>
+        <%= form.date_field :end_date, value: Date.today.last_month.end_of_month %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col m-3">
+        <%= form.number_field :working_days %>
+        <%= form.label :working_days, "Working Days"%>
+      </div>
+      <div class="input-field col m-3">
+        <%= form.number_field :sick_leaves %>
+        <%= form.label :sick_leaves, "Sick Leaves", class:"active"%>
+      </div>
+      <div class="input-field col m-3">
+        <%= form.label :casual_leaves, "Casual Leaves", class:"active"%>
+        <%= form.number_field :casual_leaves %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col m-3">
+        <%= form.label :half_days, "Half Days", class:"active"%>
+        <%= form.number_field :half_days %>
+      </div>
+      <div class="input-field col m-3">
+        <%= form.label :week_offs, "Week Offs", class:"active"%>
+        <%= form.number_field :week_offs %>
+      </div>
+    </div>
+  </div>
+  <%= form.hidden_field :updated_by, value:"Shubhang"%>
+  <div class="col m3">
+    <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+      Submit <i class='material-icons right'>send</i>
+    <% end %>
+  </div>
+
+<% end %>

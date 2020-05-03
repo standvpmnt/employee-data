@@ -1,0 +1,5 @@
+<% if @blank %>
+  document.getElementById('employee-data').innerHTML = "<%= j (render partial:"table_employees") %>";
+<% else %>
+  document.getElementById('employee-data').innerHTML = "<%= j (render partial:"searched_employees") %>";
+<% end %>

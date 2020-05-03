@@ -1,0 +1,33 @@
+
+<div id="employee-data">
+  <div class="center">
+    <%= paginate @employees %>
+  </div>
+
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Designation</th>
+        <th>Presently at</th>
+        <th>Date of Joining</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.employee_code %></td>
+        <td><%= employee.current_designation %></td>
+        <td><%= employee.location.city + ", " + employee.location.district %></td>
+        <td><%= employee.date_of_joining.strftime("%d-%B-%Y") %></td>
+        <td><%= link_to "<i class='material-icons'>more_vert</i> Open".html_safe, 
+                employee_path(employee), class:"btn-floating btn-medium waves-effect\  
+                swaves-light blue ocm-default" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

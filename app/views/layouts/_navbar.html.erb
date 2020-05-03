@@ -1,19 +1,20 @@
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="#!">three</a></li>
+  <li><a href="#!" style="padding-left:8px;">one</a></li>
+  <li><a href="#!" style="padding-left:8px;">Old Employees</a></li>
+  <li class="divider" tabindex="-1"></li>
+  <li><a href="#!" style="padding-left:8px;">Cofiguration</a></li>
 </ul>
 <nav>
-  <div class="nav-wrapper cyan accent-3">
+  <div class="nav-wrapper blue ocm-default">
     <div class="container">
-      <a href="#!" class="brand-logo">Logo</a>
+      <a href="/" class="brand-logo">OCM</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
+        <li><%= link_to "Employees", employees_path %></li>
+        <li><%= link_to "Attendance", employee_attendance_histories_path(:employee_id) %></li>
+        <li><a href="#!">Components</a></li>
         <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Setup<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
   </div>
@@ -21,7 +22,7 @@
 
 <script>
   // $('.dropdown-trigger').dropdown();
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('turbolinks:load', () => {
     var elems = document.querySelectorAll('.dropdown-trigger');
     var instances = M.Dropdown.init(elems);
   });

@@ -1,0 +1,61 @@
+<div class="row">
+  <h5>Details of <%= @employee.name %> </h5>
+  <div class="col m4 offset-m8">
+    ⁄/Image!!!!
+  </div>
+</div>
+<div class="row">
+  <div class="col m10">
+    <p>
+      <strong>Name: </strong><%= @employee.name %>
+      <span style="padding-left: 150px;"><strong>@employee.code</strong></span><br/>
+      <strong>DOB: </strong><%= @employee.dob.strftime("%d-%b-%y") %><span style="padding-left: 40px;">
+      <%= @employee.gender%></span>
+      <span style="padding-left: 100px;"><strong>Blood Group: </strong>
+      <%= @employee.blood_group %></span>
+    </p>
+    
+    <p>
+    <strong>Desingation: </strong><%= @employee.current_designation %><br/>
+    <strong>Location: </strong><%= @employee.location.city %>, <%= @employee.location.district%>
+    <span style="padding-left: 80px;"><strong>DOJ: </strong><%= @employee.date_of_joining.strftime("%d-%b-%y") %><br/>
+    <strong>Manager: </strong><%= @employee.manager ? @employee.manager.name : '' %>   
+    </p>
+
+    <p>
+    <strong>Personal Contact: </strong><%= @employee.personal_contact_no %> 
+    <span style="padding-left: 50px;"><strong>Official Contact No: </strong><%= "Logic to be entered here" %><br/>
+    <strong>Personal Email: </strong><%= @employee.personal_email %>
+    <span style="padding-left: 50px;"><strong>Official Email: </strong><%= @employee.official_email %><br/>
+    </p>
+
+    <p>
+    <strong>Father: </strong><%= @employee.father_name %>
+    <span style="padding-left: 80px;"><strong>Mother: </strong><%= @employee.mother_name %><br/>
+    <strong>Local Address: </strong><%= @employee.local_address %><br/>
+    <strong>Permanent Address: </strong><%= @employee.permanent_address %><br/>
+    </p>
+
+    <% if !@employee.active %>
+      <p>
+        <strong>Date of Leaving: </strong><%= @employee.date_of_leaving %><br/>
+      </p>
+    <% end %>
+
+  </div>
+
+  <div class="col m2">
+    <% if @employee.active %>
+      <div class="toc-wrapper pinned">
+        <ul class="section table-of-contents">
+          <li><%= link_to "Attendance", employee_attendance_histories_path(@employee) %></li>
+          <li><%= link_to "Postings", employee_posting_histories_path(@employee) %></li>
+          <li><%= link_to "Appraisal", employee_appraisal_histories_path(@employee) %></li>
+          <li><%= link_to "Assets", employee_assets_path(@employee) %></li>
+          <li><%= link_to "Documents", employee_documents_path(@employee) %></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+</div>

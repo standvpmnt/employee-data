@@ -5,8 +5,8 @@ class CreateAttendanceHistories < ActiveRecord::Migration[6.0]
       t.date :start_date
       t.date :end_date
       t.integer :working_days
-      t.integer :sick_leaves
-      t.integer :casual_leaves
+      t.integer :sick_leaves, default: 0
+      t.integer :casual_leaves, default: 0
       t.string :updated_by
 
       t.timestamps

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_100624) do
+ActiveRecord::Schema.define(version: 2020_05_03_083226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,11 +52,13 @@ ActiveRecord::Schema.define(version: 2020_04_28_100624) do
     t.date "start_date"
     t.date "end_date"
     t.integer "working_days"
-    t.integer "sick_leaves"
-    t.integer "casual_leaves"
+    t.integer "sick_leaves", default: 0
+    t.integer "casual_leaves", default: 0
     t.string "updated_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "week_offs", default: 0
+    t.integer "half_days", default: 0
     t.index ["employee_id"], name: "index_attendance_histories_on_employee_id"
   end
 
