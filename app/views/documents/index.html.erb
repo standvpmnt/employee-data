@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col m8 center">
+    <h4>Documents</h4>
+  </div>
+  <div class="col m3 right-align" style="padding-top:20px;">
+  <%= link_to "<i class='material-icons'>add</i>".html_safe, new_employee_document_path, 
+        class:"btn-floating btn waves-effect waves-light blue ocm-default"%>
+  </div>
+</div>
+
+<table class="highlight centered">
+  <thead>
+    <tr>
+      <th>Document Type</th>
+      <th>View</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @documents.each do |document| %>
+    <% count = 0 %>
+    <tr>
+      <td><%= document.document_type.document_category %></td>
+      <td> 
+        <% document.docs.each do |doc| %>
+          <% count += 1%>
+          <%= link_to "#{count}", rails_blob_path(doc, disposition: "attachment") %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<%= render partial:"/home/tab_bar"%>
+
+<div class="row">
+  <div class="col m8 center">
+    <h4>Document Types</h4>
+  </div>
+  <div class="col m3 right-align" style="padding-top:20px;">
+  <%= link_to "<i class='material-icons'>add</i>".html_safe, new_document_type_path, 
+        class:"btn-floating btn waves-effect waves-light blue ocm-default"%>
+  </div>
+</div>
+
+<table class="highlight centered">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @document_types.each do |document_type| %>
+    <tr>
+      <td><%= document_type.id %></td>
+      <td><%= document_type.document_category %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

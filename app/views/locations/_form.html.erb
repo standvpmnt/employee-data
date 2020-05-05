@@ -1,0 +1,45 @@
+<%= form_with model: @location do |form| %>
+  <div class="input-field col m8">
+    <%= form.text_field :code %>
+    <%= form.label :code, "Location Code" %>
+  </div>
+  <div class="row">
+    <div class="input-field col m6">
+      <%= form.text_field :city %>
+      <%= form.label :city, "City/Village" %>
+    </div>
+    <div class="input-field col m6">
+      <%= form.text_field :district %>
+      <%= form.label :district, "District" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col m6">
+      <%= form.text_field :state %>
+      <%= form.label :state, "State" %>
+    </div>
+    <div class="input-field col m6">
+      <%= form.text_field :country, value:"India" %>
+      <%= form.label :country, "Country", class:"active" %>
+    </div>
+  </div>
+  <div class="input-field col m8">
+    <%= form.text_area :address, class:"materialize-textarea" %>
+    <%= form.label :address, "Address" %>
+  </div>
+  <div class="input-field col m4">
+    <%= form.text_field :pin_code %>
+    <%= form.label :pin_code, "Pin Code" %>
+  </div>
+
+  <div class="col m3">
+    <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+      <% if @location.new_record? %>
+        Submit <i class='material-icons right'>send</i>
+      <% else %>
+        Update <i class='material-icons right'>update</i>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>

@@ -1,0 +1,23 @@
+<%= form_with model: @asset_detail do |form| %>
+  <div class="row">
+    <div class="input-field col m6">
+      <%= form.text_field :asset_category %>
+      <%= form.label :asset_category, "Asset Category" %>
+    </div>
+    <div class="input-field col m4">
+      <%= form.text_field :identifier_type %>
+      <%= form.label :identifier_type, "Identifier" %>
+    </div>
+  </div>
+
+  <div class="col m3">
+    <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+      <% if @asset_detail.new_record? %>
+        Submit <i class='material-icons right'>send</i>
+      <% else %>
+        Update <i class='material-icons right'>update</i>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>

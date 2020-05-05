@@ -1,0 +1,30 @@
+<%= render partial:"/home/tab_bar"%>
+
+<div class="row">
+  <div class="col m8 center">
+    <h4>Asset Types</h4>
+  </div>
+  <div class="col m3 right-align" style="padding-top:20px;">
+  <%= link_to "<i class='material-icons'>add</i>".html_safe, new_asset_detail_path, 
+        class:"btn-floating btn waves-effect waves-light blue ocm-default"%>
+  </div>
+</div>
+
+<table class="highlight centered">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Category</th>
+      <th>Identifier</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @asset_details.each do |asset_detail| %>
+    <tr>
+      <td><%= asset_detail.id %></td>
+      <td><%= asset_detail.asset_category %></td>
+      <td><%= asset_detail.identifier_type %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

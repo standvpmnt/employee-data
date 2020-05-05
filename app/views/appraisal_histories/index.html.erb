@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col m8">
+  <h4>Appraisal details of <%= @employee.name %></h4>
+  </div>
+  <div class="col m3 right-align" style="padding-top:20px;">
+  <%= link_to "<i class='material-icons'>add</i>".html_safe, new_employee_appraisal_history_path(@employee), 
+        class:"btn-floating btn waves-effect waves-light blue ocm-default"%>
+  </div>
+</div>
+
+<table class="highlight centered">
+    <thead>
+      <tr>
+        <th>Last Designation</th>
+        <th>Last Salary(₹)</th>
+        <th>Effective Date</th>
+        <th>New Designation</th>
+        <th>New Salary(₹)</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @appraisal_histories.each do |appraisal_history| %>
+      <tr>
+        <td><%= appraisal_history.last_designation %></td>
+        <td><%= appraisal_history.last_salary %></td>
+        <td><%= appraisal_history.effective_date.strftime("%d-%b-%y") %></td>
+        <td><%= appraisal_history.new_designation %></td>
+        <td><%= appraisal_history.new_salary %></td>
+        <td><%= link_to "<i class='material-icons'>edit</i> Open".html_safe, 
+                edit_employee_appraisal_history_path(@employee,appraisal_history), 
+                class:"btn-floating btn-medium waves-effect waves-light blue ocm-default" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>

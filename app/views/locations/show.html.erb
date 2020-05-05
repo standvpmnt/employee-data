@@ -1,0 +1,20 @@
+<%= render partial:"/home/tab_bar"%>
+
+<div class="col m12">
+  <p>
+    <strong>Location Code: </strong><%= @location.code %>
+  </p>
+  
+  <p>
+    <strong>City: </strong><%= @location.city %>
+    <span style="padding-left: 150px;"><strong>District: </strong><%= @location.district %><br/>
+    <strong>State: </strong><%= @location.state %>
+    <span style="padding-left: 150px;"><strong>Country: </strong><%= @location.country %><br/>
+  </p>
+
+  <p>
+    <strong>Address: </strong><%= simple_format(@location.address) %><br/>
+    <strong>Pin Code: </strong><%= @location.pin_code %><br/>
+  </p>
+
+</div>

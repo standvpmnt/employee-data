@@ -21,6 +21,13 @@ class AttendanceHistoriesController < ApplicationController
   end
 
   def update
+    @attendance_history = @employee.attendance_histories.find(params[:id])
+    if @attendance_history.update(attendance_history_params)
+      redirect_to employee_attendance_histories_path(@employee),
+                notice: "Attendance record successfully updated"
+    else
+      render :edit, notice: "Error while updating record"
+    end
   end
 
   def index

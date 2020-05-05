@@ -1,0 +1,34 @@
+<%= form_with model: [@employee, @posting_history] do |form| %>
+  <div>
+    <div class="row">
+      <div class="col m-4">
+        <%= form.label :start_date, "Start Date", class: @posting_history.new_record? ? '' : "active" %>
+        <%= form.date_field :start_date %>
+      </div>
+
+      <div class="col m-4">
+        <%= form.label :end_date, "End Date", class: @posting_history.new_record? ? '' : "active" %>
+        <%= form.date_field :end_date %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col m-6">
+        <%= form.collection_select(:location_id, Location.all, :id, :code, {:prompt => 'Select'}, class:"browser-default") %>
+        <%= form.label :location_id, "Select Location", class:"active"%>
+      </div>
+    </div>
+  </div>
+
+  <%= form.hidden_field :updated_by, value:"Shubhang"%>
+  <div class="col m3">
+    <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+      <% if @posting_history.new_record? %>
+        Submit <i class='material-icons right'>send</i>
+      <% else %>
+        Update <i class='material-icons right'>update</i>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>
