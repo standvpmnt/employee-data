@@ -4,10 +4,13 @@ class DocumentsController < ApplicationController
   def create
     @document = @employee.documents.new(document_params)
     if @document.save
-      redirect_to employee_documents_path(@employee), 
-                notice: "Document successfully saved"
+      flash[:success]="Document successfully saved"
+      redirect_to employee_documents_path(@employee)
     else
-      render :new, notice: "Error while adding record"
+      a=''
+      @document.errors.full_messages.each { |m| a += "\n" + m }
+      flash.now[:alert] = "Couldn't create document because" + a
+      render :new
     end
   end
 

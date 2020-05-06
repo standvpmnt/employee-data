@@ -1,0 +1,53 @@
+<%= form_with model: [@employee, @asset] do |form| %>
+  <div class="row">
+    <div class="input-field col m6">
+      <%= form.collection_select(:asset_detail_id, AssetDetail.all, :id, :asset_category, {:prompt => 'Select'}, 
+                                  {class:"browser-default", onchange:"showLabel();"}) %>
+      <%= form.label :asset_detail_id, "Select Asset Type", class:"active"%>
+    </div>
+  </div>
+
+  <div class="row" id="identifier-section" style="display:none;">
+    <div class="input-field col m3 right-align" id="label-identifier" style="padding-top:10px;">
+    </div>
+    <div class="input-field col m6">
+      <%= form.text_field(:asset_identifier, placeholder: "Identifier") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col m6">
+      <%= form.text_field(:note) %>
+      <%= form.label :note, "Note"%>
+    </div>
+    <%= form.hidden_field :updated_by, value:"Shubhang"%>
+  </div>
+
+  <div class="row">
+    <div class="input-field col m6">
+      <%= form.file_field(:tags, multiple: true) %>
+    </div>
+  </div>
+
+  <div class="col m3">
+    <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+      <% if @asset.new_record? %>
+        Submit <i class='material-icons right'>send</i>
+      <% else %>
+        Update <i class='material-icons right'>update</i>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+const showLabel = () => {
+  document.getElementById("identifier-section").style.display = "block";
+  val = document.getElementById("asset_asset_detail_id").value;
+  a = window.location.origin + '/api/v1/asset_details/' + val
+  a = fetch(a).then(response => response.json()).then(data => {
+    let alp =(data.data.attributes);
+    document.getElementById("label-identifier").innerHTML = alp["identifier-type"];
+  });
+}
+</script>

@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col m8">
     <%= form_with(url: "/employees", method: "get") do %>
-      <div class="col m7">
-      <div class="input-field">
-        <%= text_field_tag :search, nil, placeholder:"Search by name or code" %>
-      </div>
+      <div class="col m8">
+        <div class="input-field">
+          <%= text_field_tag :search, nil, placeholder:"Search by name or code" %>
+        </div>
       </div>
       <div class="col m4" style="padding-top:20px;">
         <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
@@ -12,6 +12,10 @@
         <% end %>
       </div>
     <% end %>
+  </div>
+  <div class="col m4 right-align" style="padding-top:20px;">
+    <%= link_to "<i class='material-icons'>add</i>".html_safe, new_employee_path, 
+        class:"btn-floating btn waves-effect waves-light blue ocm-default"%>
   </div>
 </div>
 

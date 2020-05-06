@@ -1,0 +1,185 @@
+<%= form_with(model: @employee, local: true) do |form| %>
+
+<div class="row">
+  <div class="input-field col m5">
+    <%= form.label :name, "Name", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="input-field col m3">
+    <%= form.select :gender, ["Male", "Female"], {:prompt => 'Select'}, class:"browser-default" %>
+    <%= form.label :gender, "Gender", class:"active"%>
+  </div>
+
+  <div class="col m3">
+    <%= form.date_field :dob %>
+    <%= form.label :dob, "Date of Birth", class:"active" %>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="input-field col m2">
+    <%= form.label :blood_group, "Blood Group", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :blood_group %>
+  </div>
+
+  <div class="input-field col m3">
+    <%= form.label :personal_contact_no, "Personal Contact Number", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :personal_contact_no %>
+  </div>
+
+  <div class="input-field col m3">
+    <%= form.label :personal_email, "Personal Email", class: @employee.new_record? ? '' : "active" %>
+    <%= form.email_field :personal_email %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col m4">
+    <%= form.label :father_name, "Father's Name", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :father_name %>
+  </div>
+
+  <div class="input-field col m4">
+    <%= form.label :mother_name, "Mother's Name", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :mother_name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col m3">
+    <%= form.label :emergency_contact_name, "Emergency Contact Name", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :emergency_contact_name %>
+  </div>
+  <div class="input-field col m3">
+    <%= form.label :emergency_contact_relation, "Emergency Contact Relation", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :emergency_contact_relation %>
+  </div>
+  <div class="input-field col m3">
+    <%= form.label :emergency_contact_no, "Emergency Contact Number", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :emergency_contact_no %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col m5">
+    <%= form.label :local_address, "Local Address", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_area :local_address, class:"materialize-textarea" %>
+  </div>
+  <div class="input-field col m5">
+    <%= form.label :permanent_address, "Permanent Address", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_area :permanent_address, class:"materialize-textarea" %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="input-field col m4">
+    <%= form.label :current_designation, "Current Designation", class: @employee.new_record? ? '' : "active" %>
+    <%= form.text_field :current_designation %>
+  </div>
+
+  <div class="col m4">
+    <%= form.date_field :date_of_joining %>
+    <%= form.label :date_of_joining, "Date of Joining", class:"active" %>
+  </div>
+
+  <div class="col m4">
+    <%= form.email_field :official_email %>
+    <%= form.label :official_email, "Official Email Id", class: @employee.new_record? ? '' : "active" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col m4">
+    <%= form.collection_select(:location_id, Location.all, :id, :code, {:prompt => 'Select'}, class:"browser-default") %>
+    <%= form.label :location_id, "Select Location", class:"active"%>
+  </div>
+  <div class="col m4">
+    <%= form.text_field :employee_code %>
+    <%= form.label :employee_code, "Employee Code", class: @employee.new_record? ? '' : "active"%>
+  </div>
+  <div class="col m4" id="suggested-emp-code">
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col m4">
+    Is Manager?
+    <p>
+      <label>
+        <%= form.radio_button :isManager, "true", checked: false %>
+        <span>Yes</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= form.radio_button :isManager, "false", checked: true %>
+        <span>No</span>
+      </label>
+    </p>
+  </div>
+  <div class="col m6">
+    <%= form.collection_select(:manager_id, Employee.where(isManager: true), :id, :name, {:prompt => 'Select'}, class:"browser-default") %>
+    <%= form.label :manager_id, "Select Manager", class:"active"%>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col m6">
+    <%= form.text_area :notes, class: "materialize-textarea"%>
+    <%= form.label :notes, "Notes", class: @employee.notes.blank? ? '' : "active" %>
+  </div>
+  <div class="input-field col m6">
+    <%= form.label :photo, "Upload Photo", class:"active"%>
+    <%= form.file_field :photo %>
+  </div>
+</div>
+
+<% unless @employee.new_record? %>
+<div class="row">
+  <div class="col m2">
+    Employee quit?
+  </div>
+  <div class="col m2">
+    <label>
+      <%= form.radio_button :active, "false", checked: false, onclick:"showDateBox();" %>
+      <span>Yes</span>
+    </label>
+  </div>
+  <div class="col m2">
+    <label>
+      <%= form.radio_button :active, "true", checked: true, onclick:"showDateBox();" %>
+      <span>No</span>
+    </label>
+  </div>
+  <div class="col m4" id="leaving-date-box" style="dislay: none;">
+    <%= form.date_field :date_of_leaving %>
+    <%= form.label :date_of_leaving, "Date of Leaving", class:"active" %>
+  </div>
+</div>
+<% end %>
+
+<div class="col m3" style="padding-bottom: 20px;">
+  <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+    <% if @employee.new_record? %>
+      Submit <i class='material-icons right'>send</i>
+    <% else %>
+      Update <i class='material-icons right'>update</i>
+    <% end %>
+  <% end %>
+</div>
+
+<% end %>
+
+<script>
+document.addEventListener('turbolinks:load', () => showDateBox() );
+const showDateBox = () => {
+  document.getElementById("employee_active_false").checked ? 
+      document.getElementById("leaving-date-box").style.display="block" : 
+      document.getElementById("leaving-date-box").style.display="none";
+};
+</script>

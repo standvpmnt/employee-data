@@ -3,7 +3,7 @@ class Employee < ApplicationRecord
   validates_associated :location
   has_many :subordinates, class_name: "Employee", foreign_key: "manager_id"
   belongs_to :manager, class_name: "Employee", optional: true
-  validates :employee_code, presence: true, uniqueness: true
+  validates :employee_code, uniqueness: true, presence: true
   VALID_EMAIL_REGEX= /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :personal_email, format: {with: VALID_EMAIL_REGEX}, allow_blank: true
   validates :official_email, format: {with: VALID_EMAIL_REGEX}, allow_blank: false

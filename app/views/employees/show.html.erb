@@ -1,42 +1,89 @@
 <div class="row">
-  <h5>Details of <%= @employee.name %> </h5>
-  <div class="col m4 offset-m8">
-    ⁄/Image!!!!
+  <div class="col m9">
+    <h4><%= @employee.name %> </h4>
   </div>
+  <div class="col m3 right-align" style="padding-top: 20px;">
+    <%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_employee_path(@employee), 
+        class:"btn-floating btn waves-effect waves-light blue ocm-default"%>
+  </div>
+</div>
+
+<div class="col m4 offset-m8">
+  <%= @employee.photo.attached? ? image_tag(url_for(@employee.photo), height:"300px", width:"300px") : "Image goes here" %>
 </div>
 <div class="row">
   <div class="col m10">
     <p>
-      <strong>Name: </strong><%= @employee.name %>
-      <span style="padding-left: 150px;"><strong>@employee.code</strong></span><br/>
-      <strong>DOB: </strong><%= @employee.dob.strftime("%d-%b-%y") %><span style="padding-left: 40px;">
-      <%= @employee.gender%></span>
-      <span style="padding-left: 100px;"><strong>Blood Group: </strong>
-      <%= @employee.blood_group %></span>
+      <div class="row">
+        <div class="col m8">
+          <strong>Name: </strong><%= @employee.name %>
+        </div>
+        <div class="col m4">
+        <span><strong>@employee.code</strong></span><br/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m4">
+          <strong>DOB: </strong><%= @employee.dob.strftime("%d-%b-%y") %>
+        </div>
+        <div class="col m4">
+          <span>
+            <strong>Gender: </strong>
+            <%= @employee.gender%>
+          </span>
+        </div>
+        <div class="col m4">
+          <span><strong>Blood Group: </strong>
+          <%= @employee.blood_group %></span>
+        </div>
+      </div>
     </p>
     
-    <p>
-    <strong>Desingation: </strong><%= @employee.current_designation %><br/>
-    <strong>Location: </strong><%= @employee.location.city %>, <%= @employee.location.district%>
-    <span style="padding-left: 80px;"><strong>DOJ: </strong><%= @employee.date_of_joining.strftime("%d-%b-%y") %><br/>
-    <strong>Manager: </strong><%= @employee.manager ? @employee.manager.name : '' %>   
-    </p>
+    <div class="row">
+      <div class="col m8">
+        <p>
+          <strong>Desingation: </strong><%= @employee.current_designation %><br/>
+          <strong>Location: </strong><%= @employee.location.city %>, <%= @employee.location.district%><br/>
+          <strong>Manager: </strong><%= @employee.manager ? @employee.manager.name : '' %>   
+        </p>
+        <p>
+          <strong>Personal Email: </strong><%= @employee.personal_email %><br/>
+          <strong>Official Email: </strong><%= @employee.official_email %><br/>
+        </p>
+        <p>
+          <strong>Father: </strong><%= @employee.father_name %><br/>
 
-    <p>
-    <strong>Personal Contact: </strong><%= @employee.personal_contact_no %> 
-    <span style="padding-left: 50px;"><strong>Official Contact No: </strong><%= "Logic to be entered here" %><br/>
-    <strong>Personal Email: </strong><%= @employee.personal_email %>
-    <span style="padding-left: 50px;"><strong>Official Email: </strong><%= @employee.official_email %><br/>
-    </p>
+        </p>
+      </div>
 
-    <p>
-    <strong>Father: </strong><%= @employee.father_name %>
-    <span style="padding-left: 80px;"><strong>Mother: </strong><%= @employee.mother_name %><br/>
-    <strong>Local Address: </strong><%= @employee.local_address %><br/>
-    <strong>Permanent Address: </strong><%= @employee.permanent_address %><br/>
-    </p>
+      <div class="col m4">
+        <p>
+          <span><strong>DOJ: </strong><%= @employee.date_of_joining.strftime("%d-%b-%y") %><br/>
+          <br/>
+          <br/>
+        </p>
+        <p>
+          <strong>Personal Contact: </strong><%= @employee.personal_contact_no %><br/>
+          <strong>Official Contact: </strong><%= "1234567890" %><br/>
+        </p>
+        <p>
+          <strong>Mother: </strong><%= @employee.mother_name %><br/>
+        </p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col m6">
+        <strong>Local Address: </strong><br/>
+        <%= @employee.local_address %><br/>
+      </div>
+      <div class="col m6">
+        <strong>Permanent Address: </strong><br/>
+        <%= @employee.permanent_address %><br/>
+      </div>
+    </div>
 
-    <% if !@employee.active %>
+    <% unless @employee.active %>
       <p>
         <strong>Date of Leaving: </strong><%= @employee.date_of_leaving %><br/>
       </p>
@@ -46,7 +93,7 @@
 
   <div class="col m2">
     <% if @employee.active %>
-      <div class="toc-wrapper pinned">
+      <div class="toc-wrapper">
         <ul class="section table-of-contents">
           <li><%= link_to "Attendance", employee_attendance_histories_path(@employee) %></li>
           <li><%= link_to "Postings", employee_posting_histories_path(@employee) %></li>

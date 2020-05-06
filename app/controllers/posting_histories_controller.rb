@@ -4,10 +4,13 @@ class PostingHistoriesController < ApplicationController
   def create
     @posting_history = @employee.posting_histories.new(posting_history_params)
     if @posting_history.save
-      redirect_to employee_posting_histories_path(@employee), 
-                notice: "Posting record successfully added"
+      flash[:success] = "Posting record successfully added"
+      redirect_to employee_posting_histories_path(@employee)
     else
-      render :new, notice: "Error while adding record"
+      a=''
+      @posting_history.errors.full_messages.each { |m| a += "\n" + m }
+      flash.now[:alert] = "Couldn't create posting because" + a
+      render :new
     end
   end
 
@@ -23,10 +26,13 @@ class PostingHistoriesController < ApplicationController
   def update
     @posting_history = @employee.posting_histories.find(params[:id])
     if @posting_history.update(posting_history_params)
-      redirect_to employee_posting_histories_path(@employee),
-                notice: "Posting record successfully updated"
+      flash[:success] = "Posting record successfully updated"
+      redirect_to employee_posting_histories_path(@employee)
     else
-      render :edit, notice: "Error while updating record"
+      a=''
+      @posting_history.errors.full_messages.each { |m| a += "\n" + m }
+      flash.now[:alert] = "Couldn't update posting because" + a
+      render :edit
     end
   end
 

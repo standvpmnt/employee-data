@@ -4,10 +4,13 @@ class AppraisalHistoriesController < ApplicationController
   def create
     @appraisal_history = @employee.appraisal_histories.new(appraisal_history_params)
     if @appraisal_history.save
-      redirect_to employee_appraisal_histories_path(@employee), 
-                notice: "Appraisal record successfully added"
+      flash[:success]="Appraisal record successfully added"
+      redirect_to employee_appraisal_histories_path(@employee)
     else
-      render :new, notice: "Error while adding record"
+      a=''
+      @appraisal_history.errors.full_messages.each { |m| a += "\n" + m }
+      flash.now[:alert] = "Couldn't create record because" + a
+      render :new
     end
   end
 
@@ -23,10 +26,13 @@ class AppraisalHistoriesController < ApplicationController
   def update
     @appraisal_history = @employee.appraisal_histories.find(params[:id])
     if @appraisal_history.update(appraisal_history_params)
-      redirect_to employee_appraisal_histories_path(@employee),
-                notice: "Appraisal record successfully updated"
+      flash[:success]="Appraisal record successfully updated"
+      redirect_to employee_appraisal_histories_path(@employee)
     else
-      render :edit, notice: "Error while updating record"
+      a=''
+      @appraisal_history.errors.full_messages.each { |m| a += "\n" + m }
+      flash.now[:alert] = "Couldn't update record because" + a
+      render :edit
     end
   end
 

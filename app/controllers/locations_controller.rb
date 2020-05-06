@@ -15,9 +15,13 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if @location.save
-      redirect_to location_path(@location), notice:"Location successfuly saved"
+      flash[:success]="Location successfuly saved"
+      redirect_to location_path(@location)
     else
-      render :new, notice: "Error while adding new record"
+      a=''
+      @location.errors.full_messages.each { |m| a += "\n" + m }
+      flash.now[:alert] = "Couldn't create location because" + a
+      render :new
     end
   end
 

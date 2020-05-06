@@ -1,0 +1,11 @@
+<% if flash[:success] %>
+  <div class="card-panel light-green darken-1 white-text">
+    <p class="white-text"><%= simple_format(flash[:success]) %></p>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="card-panel deep-orange white-text">
+    <p class="white-text"><%= simple_format(flash[:alert]) %></p>
+  </div>
+<% end %>

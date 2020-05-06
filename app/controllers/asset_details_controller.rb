@@ -12,9 +12,13 @@ class AssetDetailsController < ApplicationController
   def create
     @asset_detail = AssetDetail.new(asset_detail_params)
     if @asset_detail.save
-      redirect_to asset_details_path, notice:"Asset Type successfuly saved"
+      flash[:success] = "Asset Type successfuly saved"
+      redirect_to asset_details_path
     else
-      render :new, notice: "Error while adding new record"
+      a=''
+      @asset_detail.errors.full_messages.each { |m| a += "\n" + m }
+      flash.now[:alert] = "Couldn't create asset detail because" + a
+      render :new
     end
   end
 

@@ -12,9 +12,13 @@ class DocumentTypesController < ApplicationController
   def create
     @document_type = DocumentType.new(document_type_params)
     if @document_type.save
-      redirect_to document_types_path, notice:"Document Type successfuly saved"
+      flash[:success]="Document Type successfuly saved"
+      redirect_to document_types_path
     else
-      render :new, notice: "Error while adding new record"
+      a=''
+      @document_type.errors.full_messages.each { |m| a += "\n" + m }
+      flash.now[:alert] = "Couldn't create document because" + a
+      render :new
     end
   end
 

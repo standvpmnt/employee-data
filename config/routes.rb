@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "home#index"
   get '/configuration', to: "home#configuration"
+  
+  namespace :api do
+    namespace :v1 do
+      resources :asset_details, only: [:show]
+    end
+  end
   # namespace :api do
   #   namespace :v1 do
   #     resources :locations, only: [:index, :show] do
@@ -27,6 +33,6 @@ Rails.application.routes.draw do
     resources :appraisal_histories
     resources :posting_histories
     resources :documents, only: [:new, :create, :index]
-    resources :assets
+    resources :assets, only: [:index, :new, :create]
   end
 end

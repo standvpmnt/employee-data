@@ -1,7 +1,7 @@
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!" style="padding-left:8px;">one</a></li>
-  <li><a href="#!" style="padding-left:8px;">Old Employees</a></li>
+  <li><%= link_to "Location", employees_path %></li>
+  <li><a href="#!" style="padding-left:8px;">Ex Employees</a></li>
   <li class="divider" tabindex="-1"></li>
   <li><%= link_to "Configuration", configuration_path, style: "padding-left:8px;" %></li>
 </ul>
@@ -11,8 +11,7 @@
       <a href="/" class="brand-logo">OCM</a>
       <ul class="right hide-on-med-and-down">
         <li><%= link_to "Employees", employees_path %></li>
-        <li><%= link_to "Attendance", employee_attendance_histories_path(:employee_id) %></li>
-        <li><a href="#!">Components</a></li>
+        <li><%= link_to "Locations", locations_path %></li>
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Setup<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>

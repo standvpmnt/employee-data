@@ -1,19 +1,19 @@
 <%= form_with model: [@employee, @posting_history] do |form| %>
   <div>
     <div class="row">
-      <div class="col m-4">
+      <div class="col m4">
         <%= form.label :start_date, "Start Date", class: @posting_history.new_record? ? '' : "active" %>
         <%= form.date_field :start_date %>
       </div>
 
-      <div class="col m-4">
+      <div class="col m4">
         <%= form.label :end_date, "End Date", class: @posting_history.new_record? ? '' : "active" %>
         <%= form.date_field :end_date %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col m-6">
+      <div class="col m6">
         <%= form.collection_select(:location_id, Location.all, :id, :code, {:prompt => 'Select'}, class:"browser-default") %>
         <%= form.label :location_id, "Select Location", class:"active"%>
       </div>
