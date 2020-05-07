@@ -3,8 +3,12 @@ class PostingHistoriesController < ApplicationController
 
   def create
     @posting_history = @employee.posting_histories.new(posting_history_params)
-    if @posting_history.save
+    if PostingHistory.new_posting(@posting_history)
       flash[:success] = "Posting record successfully added"
+    else
+      flash[:alert]="Error in updating old records, contact administrator REF[id]= #{@posting_history.id}"
+    end    
+    if @posting_history.save
       redirect_to employee_posting_histories_path(@employee)
     else
       a=''
@@ -25,8 +29,12 @@ class PostingHistoriesController < ApplicationController
 
   def update
     @posting_history = @employee.posting_histories.find(params[:id])
-    if @posting_history.update(posting_history_params)
+    if PostingHistory.new_posting(@posting_history)
       flash[:success] = "Posting record successfully updated"
+    else
+      flash[:alert]="Error in updating old records, contact administrator REF[id]= #{@posting_history.id}"
+    end
+    if @posting_history.update(posting_history_params)
       redirect_to employee_posting_histories_path(@employee)
     else
       a=''

@@ -6,10 +6,12 @@
         <%= form.date_field :start_date %>
       </div>
 
-      <div class="col m4">
-        <%= form.label :end_date, "End Date", class: @posting_history.new_record? ? '' : "active" %>
-        <%= form.date_field :end_date %>
-      </div>
+      <% unless @posting_history.new_record? %>
+        <div class="col m4">
+          <%= form.label :end_date, "End Date", class: @posting_history.new_record? ? '' : "active" %>
+          <%= form.date_field :end_date %>
+        </div>
+      <% end %>
     </div>
 
     <div class="row">
@@ -20,7 +22,6 @@
     </div>
   </div>
 
-  <%= form.hidden_field :updated_by, value:"Shubhang"%>
   <div class="col m3">
     <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
       <% if @posting_history.new_record? %>
