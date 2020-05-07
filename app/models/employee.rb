@@ -15,6 +15,7 @@ class Employee < ApplicationRecord
   has_many :posting_histories
   has_many :attendance_histories
   has_many :appraisal_histories
+  has_one :code_record
   
   def self.locator(search_string)
     self.where("LOWER(name) LIKE :queryn OR LOWER(employee_code) = :query", 

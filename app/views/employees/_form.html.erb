@@ -92,18 +92,20 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col m4">
-    <%= form.collection_select(:location_id, Location.all, :id, :code, {:prompt => 'Select'}, class:"browser-default") %>
-    <%= form.label :location_id, "Select Location", class:"active"%>
+<% if @employee.new_record? %>
+  <div class="row">
+    <div class="col m4">
+      <%= form.collection_select(:location_id, Location.all, :id, :code, {:prompt => 'Select'}, class:"browser-default", onchange:"showNewCode(value);") %>
+      <%= form.label :location_id, "Select Location", class:"active"%>
+    </div>
+    <div class="col m4">
+      <%= form.text_field :employee_code %>
+      <%= form.label :employee_code, "Employee Code", class: @employee.new_record? ? '' : "active"%>
+    </div>
+    <div class="col m4" id="suggested-emp-code" style="display: none; padding-top:20px;">
+    </div>
   </div>
-  <div class="col m4">
-    <%= form.text_field :employee_code %>
-    <%= form.label :employee_code, "Employee Code", class: @employee.new_record? ? '' : "active"%>
-  </div>
-  <div class="col m4" id="suggested-emp-code">
-  </div>
-</div>
+<% end %>
 
 
 <div class="row">
@@ -176,10 +178,18 @@
 <% end %>
 
 <script>
-document.addEventListener('turbolinks:load', () => showDateBox() );
 const showDateBox = () => {
   document.getElementById("employee_active_false").checked ? 
       document.getElementById("leaving-date-box").style.display="block" : 
       document.getElementById("leaving-date-box").style.display="none";
 };
+
+const showNewCode = (val) => {
+  fetch(window.location.origin+'/api/v1/new_employee_code/'+val+'.json').
+        then(response => response.json()).then(data => {
+          document.getElementById('suggested-emp-code').innerHTML = "Suggested Code: " + data["new code"];
+          document.getElementById('suggested-emp-code').style.display = "block";
+          document.getElementById('employee_employee_code').value = data["new code"];
+        });
+}
 </script>

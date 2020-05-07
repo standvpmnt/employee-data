@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :asset_details, only: [:show]
+      get 'new_employee_code/:loc_id', to: "code_records#new_code"
     end
   end
   # namespace :api do

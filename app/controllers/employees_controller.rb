@@ -39,13 +39,22 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-    if @employee.save
-      flash[:success] = "Employee created successfully"
-      redirect_to employee_path(@employee)
+    if CodeRecord.check_code(@employee)
+      if @employee.save
+        if CodeRecord.new_employee(@employee)
+          flash[:success] = "Employee created successfully"
+        else
+          flash[:alert] = "Error in storing employee code, contact admin REF[id]: #{@employee.id}"
+        end
+        redirect_to employee_path(@employee)
+      else
+        a=''
+        @employee.errors.full_messages.each { |m| a += "\n" + m }
+        flash.now[:alert] = "Couldn't update record because" + a
+        render :new
+      end
     else
-      a=''
-      @employee.errors.full_messages.each { |m| a += "\n" + m }
-      flash.now[:alert] = "Couldn't update record because" + a
+      flash.now[:alert]="Employee Code has mismatch"
       render :new
     end
   end
