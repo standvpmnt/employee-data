@@ -1,7 +1,7 @@
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  <li><%= link_to "Location", employees_path %></li>
-  <li><a href="#!" style="padding-left:8px;">Ex Employees</a></li>
+  <li><%= link_to "Location", bifurcate_path, style:"padding-left:8px;" %></li>
+  <li><%= link_to "X-Employees", employees_path(status: "left"), style:"padding-left:8px;"%></li>
   <li class="divider" tabindex="-1"></li>
   <li><%= link_to "Configuration", configuration_path, style: "padding-left:8px;" %></li>
 </ul>

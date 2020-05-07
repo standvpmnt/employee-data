@@ -2,11 +2,14 @@ class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update]
   
   def index
-    if params[:search].blank?
+    if params[:status] == "left"
+      @employees = Employee.where(active: false).page params[:page]
+      @left = true
+    elsif params[:search].blank?
       @employees = Employee.where(active: true).page params[:page]
-      @blank = true
     else
       @employees = Employee.locator(params[:search]).page params[:page]
+      @searched = true
     end
 
     respond_to do |format|

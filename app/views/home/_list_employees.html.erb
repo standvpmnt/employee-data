@@ -1,0 +1,33 @@
+<% if @employees %>
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th>Sr.#</th>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Location</th>
+        <th>Date of Joining</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% count = 0 %>
+      <% @employees.each do |employee| %>
+        <tr>
+          <% count+= 1 %>
+          <td><%= count %></td>
+          <td><%= employee.name %></td>
+          <td><%= employee.current_designation %></td>
+          <td><%= employee.location.city + ', ' + employee.location.district %></td>
+          <td><%= employee.date_of_joining.strftime('%d-%B-%y') %></td>
+          <td><%= link_to "<i class='material-icons'>more_vert</i> Open".html_safe, 
+                employee_path(employee), class:"btn-floating btn-medium waves-effect\  
+                swaves-light blue ocm-default" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h5>No employees in your selection</h5>
+<% end %>

@@ -1,0 +1,54 @@
+<%= form_with url: bifurcate_path, method: :get do |form| %>
+  <div class="row">
+    <div class="col m4">
+      <h4>Shortlist based on</h4>
+    </div>
+    <%# passing boolean for Location as default to use in controller for checking which search is needed %>
+    <div class="col m2" style="padding-top:35px;">
+      <label>
+        <%= form.radio_button :location, "true", checked: false, onclick:"showLocationOptions(true);" %>
+        <span>Location</span>
+      </label>
+    </div>
+    <div class="col m2" style="padding-top:35px;">
+      <label>
+        <%= form.radio_button :location, "false", checked: false, onclick:"showLocationOptions(false);" %>
+        <span>Department</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col m6">
+      <div id="location-selector" style="display:none;">
+        <%= form.collection_select(:location_id, Location.all, :id, :code, {:prompt => 'Select'}, class:"browser-default" )%>
+        <%= form.label :location_id, "Select Location", class:"active" %>
+      </div>
+      <div id="department-selector" style="display:none;">
+        <%= form.collection_select(:department_id, Department.all, :id, :name, {:prompt => 'Select'}, class:"browser-default" )%>
+        <%= form.label :department_id, "Select Department", class:"active" %>
+      </div>
+    </div>
+    <div class="col m3" style="padding-bottom: 20px;">
+      <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+        Search <i class='material-icons right'>search</i>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>
+
+<div id="show-employees" style="padding-bottom: 40px;">
+</div>
+
+<script>
+  function showLocationOptions(value) {
+    if (value) {
+      document.getElementById("department-selector").style.display = "none";
+      document.getElementById("location-selector").style.display = "block";
+    } else { 
+      document.getElementById("location-selector").style.display = "none";
+      document.getElementById("department-selector").style.display = "block";
+    }
+  }
+</script>

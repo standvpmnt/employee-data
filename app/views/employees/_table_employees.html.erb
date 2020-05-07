@@ -12,6 +12,9 @@
         <th>Designation</th>
         <th>Presently at</th>
         <th>Date of Joining</th>
+        <% if @left %>
+          <th>Date of Leaving</th>
+        <% end %>
         <th></th>
       </tr>
     </thead>
@@ -23,6 +26,9 @@
         <td><%= employee.current_designation %></td>
         <td><%= employee.location.city + ", " + employee.location.district %></td>
         <td><%= employee.date_of_joining.strftime("%d-%B-%Y") %></td>
+        <% if @left %>
+          <td><%= employee.date_of_leaving.strftime("%d-%B-%Y") %></td>
+        <% end %>
         <td><%= link_to "<i class='material-icons'>more_vert</i> Open".html_safe, 
                 employee_path(employee), class:"btn-floating btn-medium waves-effect\  
                 swaves-light blue ocm-default" %></td>
