@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_022340) do
+ActiveRecord::Schema.define(version: 2020_05_07_105609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,11 @@ ActiveRecord::Schema.define(version: 2020_05_07_022340) do
     t.index ["location_id"], name: "index_code_records_on_location_id"
   end
 
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.boolean "enabled", default: true
+  end
+
   create_table "document_types", force: :cascade do |t|
     t.string "document_category"
     t.boolean "enabled", default: true
@@ -132,6 +137,8 @@ ActiveRecord::Schema.define(version: 2020_05_07_022340) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "notes"
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_employees_on_department_id"
     t.index ["location_id"], name: "index_employees_on_location_id"
     t.index ["manager_id"], name: "index_employees_on_manager_id"
   end

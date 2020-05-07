@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :locations, only: [:new, :show, :index, :create]
   resources :document_types, only: [:new, :index, :create]
   resources :asset_details, only: [:new, :index, :create]
+  resources :departments, only: [:new, :index, :create]
 
   resources :employees do
     resources :attendance_histories

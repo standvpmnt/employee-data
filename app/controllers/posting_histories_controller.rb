@@ -9,6 +9,10 @@ class PostingHistoriesController < ApplicationController
       flash[:alert]="Error in updating old records, contact administrator REF[id]= #{@posting_history.id}"
     end    
     if @posting_history.save
+      # here too the issue will happen if things are not done sequentially
+      unless @posting_history.employee.posting_histories.any? {|posting| posting.start_date > @posting_history.start_date}
+        Employee.set_location(@posting_history.employee_id, @posting_history.location_id)
+      end
       redirect_to employee_posting_histories_path(@employee)
     else
       a=''

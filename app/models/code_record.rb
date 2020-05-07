@@ -3,8 +3,8 @@ class CodeRecord < ApplicationRecord
   belongs_to :employee
 
   def self.new_code(loc_id)
-    a = self.where(location_id: loc_id).maximum(:employee_count)+1 || 1
-    return {"new code" => Location.find(loc_id).code + format("%03d", a)}
+    a = self.where(location_id: loc_id).maximum(:employee_count) || 0
+    return {"new code" => Location.find(loc_id).code + format("%03d", a+1)}
   end
   
   def self.new_employee(emp)

@@ -16,10 +16,18 @@ class Employee < ApplicationRecord
   has_many :attendance_histories
   has_many :appraisal_histories
   has_one :code_record
+  belongs_to :department
   
   def self.locator(search_string)
     self.where("LOWER(name) LIKE :queryn OR LOWER(employee_code) = :query", 
                 queryn: "%#{search_string.downcase}%", 
                 query: search_string.downcase)
   end
+
+  def self.set_location(employee,location)
+    emp = self.find(employee)
+    emp.location_id = location
+    emp.save
+  end
+  
 end

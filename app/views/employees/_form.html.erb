@@ -107,6 +107,13 @@
   </div>
 <% end %>
 
+<div class="row">
+  <div class="col m6">
+    <%= form.collection_select(:department_id, Department.all, :id, :name, {:prompt => 'Select'}, class:"browser-default" )%>
+    <%= form.label :department_id, "Select Department", class:"active" %>
+  </div>
+</div>
+
 
 <div class="row">
   <div class="col m4">
@@ -178,18 +185,27 @@
 <% end %>
 
 <script>
-const showDateBox = () => {
-  document.getElementById("employee_active_false").checked ? 
-      document.getElementById("leaving-date-box").style.display="block" : 
-      document.getElementById("leaving-date-box").style.display="none";
+function showNewCode (val) {
+  fetch(window.location.origin + "/api/v1/new_employee_code/" + val + ".json")
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("suggested-emp-code").innerHTML =
+        "Suggested Code: " + data["new code"];
+      document.getElementById("suggested-emp-code").style.display = "block";
+      document.getElementById("employee_employee_code").value =
+        data["new code"];
+    });
 };
 
-const showNewCode = (val) => {
-  fetch(window.location.origin+'/api/v1/new_employee_code/'+val+'.json').
-        then(response => response.json()).then(data => {
-          document.getElementById('suggested-emp-code').innerHTML = "Suggested Code: " + data["new code"];
-          document.getElementById('suggested-emp-code').style.display = "block";
-          document.getElementById('employee_employee_code').value = data["new code"];
-        });
-}
+function showDateBox() {
+  document.getElementById("employee_active_false").checked
+    ? (document.getElementById("leaving-date-box").style.display = "block")
+    : (document.getElementById("leaving-date-box").style.display = "none");
+};
 </script>
+
+<% unless @employee.new_record? %>
+  <script>
+    showDateBox();
+  </script>
+<% end %>

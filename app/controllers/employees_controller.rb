@@ -70,6 +70,6 @@ class EmployeesController < ApplicationController
                 :personal_email, :location_id, :employee_code, :current_designation, :date_of_joining,
               :father_name, :mother_name, :emergency_contact_no, :emergency_contact_name,
               :emergency_contact_relation, :official_email, :local_address, :permanent_address, :isManager,
-              :manager_id, :notes, :photo, :active, :date_of_leaving)
+              :manager_id, :notes, :photo, :active, :date_of_leaving, :department_id)
   end
 end

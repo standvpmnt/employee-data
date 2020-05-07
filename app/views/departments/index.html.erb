@@ -1,0 +1,28 @@
+<%= render partial:"/home/tab_bar"%>
+
+<div class="row">
+  <div class="col m8 center">
+    <h4>Department</h4>
+  </div>
+  <div class="col m3 right-align" style="padding-top:20px;">
+  <%= link_to "<i class='material-icons'>add</i>".html_safe, new_department_path, 
+        class:"btn-floating btn waves-effect waves-light blue ocm-default"%>
+  </div>
+</div>
+
+<table class="highlight centered">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Department Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @departments.each do |department| %>
+    <tr>
+      <td><%= department.id %></td>
+      <td><%= department.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

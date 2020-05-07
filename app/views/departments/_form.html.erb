@@ -1,0 +1,19 @@
+<%= form_with model: @department do |form| %>
+  <div class="row">
+    <div class="input-field col m6">
+      <%= form.text_field :name %>
+      <%= form.label :name, "Department Name" %>
+    </div>
+  </div>
+
+  <div class="col m3">
+    <%= button_tag :submit, class:"btn waves-effect waves-light red" do %>
+      <% if @department.new_record? %>
+        Submit <i class='material-icons right'>send</i>
+      <% else %>
+        Update <i class='material-icons right'>update</i>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>
