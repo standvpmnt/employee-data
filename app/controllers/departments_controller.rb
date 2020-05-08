@@ -1,5 +1,6 @@
 class DepartmentsController < ApplicationController
-
+  before_action :approved_user
+  
   def index
     @departments = Department.all
   end

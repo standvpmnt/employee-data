@@ -27,7 +27,7 @@
       <tr>
         <td><%= attendance_history.start_date.strftime("%d-%b-%y") %></td>
         <td><%= attendance_history.end_date.strftime("%d-%b-%y") %></td>
-        <td><%= (attendance_history.end_date-attendance_history.start_date).to_i %></td>
+        <td><%= (attendance_history.end_date-attendance_history.start_date).to_i+1 %></td>
         <td><%= attendance_history.working_days %></td>
         <td><%= attendance_history.sick_leaves %></td>
         <td><%= attendance_history.casual_leaves %></td>

@@ -10,10 +10,14 @@
     <div class="container">
       <a href="/" class="brand-logo">OCM</a>
       <ul class="right hide-on-med-and-down">
-        <li><%= link_to "Employees", employees_path %></li>
-        <li><%= link_to "Locations", locations_path %></li>
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Setup<i class="material-icons right">arrow_drop_down</i></a></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "Employees", employees_path %></li>
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Configuration<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Login', new_user_session_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>

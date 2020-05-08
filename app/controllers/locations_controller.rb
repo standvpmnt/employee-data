@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  before_action :approved_user
 
   def index
     @locations = Location.all

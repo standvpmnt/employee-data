@@ -1,5 +1,6 @@
 class DocumentTypesController < ApplicationController
-
+  before_action :approved_user
+  
   def index
     @document_types = DocumentType.all
   end

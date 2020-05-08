@@ -1,12 +1,14 @@
 class HomeController < ApplicationController
+  before_action :approved_user, except: [:wait]
 
   def index
-
   end
   
 
   def configuration
+  end
 
+  def wait
   end
 
   def choose

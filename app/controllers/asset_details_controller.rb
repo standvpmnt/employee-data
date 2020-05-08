@@ -1,5 +1,6 @@
 class AssetDetailsController < ApplicationController
-
+  before_action :approved_user
+  
   def index
     @asset_details = AssetDetail.all
   end

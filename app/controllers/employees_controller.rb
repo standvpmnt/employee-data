@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  before_action :approved_user
   before_action :set_employee, only: [:show, :edit, :update]
   
   def index

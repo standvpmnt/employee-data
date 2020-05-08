@@ -1,6 +1,6 @@
 class AppraisalHistoriesController < ApplicationController
   before_action :identify_employee
-
+  before_action :approved_user
   def create
     @appraisal_history = @employee.appraisal_histories.new(appraisal_history_params)
     if @appraisal_history.save

@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
+  document_category:
   enabled: false
 
 two:
-  type: 
+  document_category:
   enabled: false

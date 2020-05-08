@@ -1,4 +1,5 @@
 class AttendanceHistoriesController < ApplicationController
+  before_action :approved_user
   before_action :identify_employee
 
   def create
