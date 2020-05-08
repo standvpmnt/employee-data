@@ -25,7 +25,10 @@
 
 /public/packs
 /public/packs-test
-/node_modules
+
+!/node_modules
+/node_modules/*
+!/node_modules/materialize-css
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
